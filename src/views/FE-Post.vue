@@ -6,7 +6,6 @@
       :width="7"
       class="fe-practices-loader"
       v-show='!dataLoaded'
-      color="blue"
       indeterminate
       ></v-progress-circular>
     </div>
@@ -116,17 +115,5 @@ export default {
   max-width: 1000px;
   margin: auto;
   margin-bottom: 20px;
-}
-
-.fe-section-divider {
-  border-color: #666;
-  border-width: 1px;
-  border-radius: .5px;
-}
-
-.fe-practices-loader {
-  margin-right: 50%;
-  margin-left: 50%;
-  line-height: 50vh;
 }
 </style>

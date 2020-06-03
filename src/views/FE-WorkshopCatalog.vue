@@ -7,35 +7,31 @@
         class="hero-image"
       ></v-img>
     </div>
-    <ApolloQuery :query="query">
-      <template slot-scope="{ result: { loading, error, data } }">
-        <span v-if="loading">
-          <div class="fe-practices-loader">
-            <v-progress-circular
-            :size="70"
-            :width="7"
-            class="fe-practices-loader"
-            color="blue"
-            indeterminate
-            ></v-progress-circular>
-          </div>
-        </span>
-        <span v-else-if="error">An error occured</span>
-
-        <fe-workshop-pane v-if="data" :workshopItems='data.practices'></fe-workshop-pane>
-      </template>
-    </ApolloQuery>
+    <div class="fe-practices-loader">
+      <v-progress-circular
+      :size="70"
+      :width="7"
+      class="fe-practices-loader"
+      v-show='!dataLoaded'
+      indeterminate
+      ></v-progress-circular>
+    </div>
+    <div class="fe-workshop-wrap">
+      <fe-workshopFilter v-show='dataLoaded'></fe-workshopFilter>
+      <fe-workshop-pane v-if="dataLoaded" :workshopItems='practices'></fe-workshop-pane>
+    </div>
   </div>
 </template>
 
 <script>
-// import apiService from '@/assets/serviceApi/serviceRoutes';
 import { GET_WORKSHOPS } from '@/assets/serviceApi/queries.js';
+import FeWorkshopFilter from '@/components/FE-WorkshopFilter.vue';
 import FeWorkshopPane from '@/components/FE-WorkshopPane.vue';
 
 export default {
   name: 'FE-WorkshopCatalog',
   components: {
+    FeWorkshopFilter,
     FeWorkshopPane,
   },
   methods: {
@@ -45,29 +41,30 @@ export default {
   },
   data() {
     return {
-      query: GET_WORKSHOPS,
+      dataLoaded: false,
     };
   },
-  // async mounted() {
-  //   this.isLoading = true;
-  //   apiService
-  //     .getCatalog()
-  //     .then((result) => {
-  //       this.$store.commit('updateCatalog', result.data.data.practices);
-  //       this.catalog = result.data.data.practices;
-  //       this.isLoading = false;
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     })
-  //     .finally(() => {
-  //       this.isLoading = false;
-  //       console.log(this.$store.getters.getCatalog);
-  //     });
-  // },
+  watch: {
+    practices() {
+      this.dataLoaded = true;
+    },
+  },
+  apollo: {
+    practices: {
+      query: GET_WORKSHOPS,
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-
+.fe-workshop-wrap{
+  padding-top: 20px;
+  width: 80vw;
+  max-width: 1000px;
+  margin: auto;
+  height: calc(100vh - 400px);
+  display:flex;
+  flex-direction:column;
+}
 </style>
