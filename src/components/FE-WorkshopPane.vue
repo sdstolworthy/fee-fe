@@ -1,5 +1,5 @@
 <template>
-  <div class="fe-workshop-container fe-workshop-menu">
+  <div class="fe-workshop-pane">
     <fe-workshop-item
       v-for="item in workshopItems"
       :key="item.id"
@@ -23,12 +23,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.fe-workshop-menu{
+.fe-workshop-pane{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   flex:1;
-  overflow: scroll;
 }
 
 .fe-workshop-item {

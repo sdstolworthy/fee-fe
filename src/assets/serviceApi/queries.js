@@ -8,11 +8,18 @@ export const GET_WORKSHOPS = gql`
       slug
       coverImage
       authors {
-          id
-          firstName
-          lastName
-          mediaLink
-        }
+        id
+        firstName
+        lastName
+        mediaLink
+      }
+      tags {
+        tag
+      }
+      upvotes
+      ama {
+        question
+      }
     }
   }
 `;
@@ -47,6 +54,9 @@ export const GET_WORKSHOP = gql`
       coverImage
       mediaGallery {
         link
+      }
+      tags {
+        tag
       }
       ama {
         question

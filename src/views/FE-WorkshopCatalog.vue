@@ -3,7 +3,6 @@
     <div class='hero-image'>
       <v-img
         src='@/assets/kandinsky.jpg'
-        max-height='350px'
         class="hero-image"
       ></v-img>
     </div>
@@ -17,7 +16,7 @@
       ></v-progress-circular>
     </div>
     <div class="fe-workshop-wrap">
-      <fe-workshopFilter v-show='dataLoaded'></fe-workshopFilter>
+      <fe-workshop-filter v-show='dataLoaded'></fe-workshop-filter>
       <fe-workshop-pane v-if="dataLoaded" :workshopItems='practices'></fe-workshop-pane>
     </div>
   </div>
@@ -59,12 +58,13 @@ export default {
 
 <style lang="scss" scoped>
 .fe-workshop-wrap{
-  padding-top: 20px;
+  padding-top: 1.25rem;
   width: 80vw;
-  max-width: 1000px;
+  max-width: 87.5rem;
   margin: auto;
-  height: calc(100vh - 400px);
+  height: calc(100vh - 25rem);
   display:flex;
   flex-direction:column;
+  overflow-x: visible;
 }
 </style>

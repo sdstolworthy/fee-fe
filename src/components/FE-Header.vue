@@ -8,7 +8,7 @@
   >
     <div class="d-flex align-center">
       <v-img
-        alt="Vuetify Logo"
+        alt="FEE Logo"
         class="shrink mr-2 show-link"
         contain
         src="@/assets/logo.png"
@@ -19,14 +19,14 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn
+    <!-- <v-btn
       href="https://github.com/vuetifyjs/vuetify/releases/latest"
       target="_blank"
       text
     >
       <span class="mr-2">Latest Release</span>
       <v-icon>mdi-open-in-new</v-icon>
-    </v-btn>
+    </v-btn> -->
   </v-app-bar>
 </template>
 
