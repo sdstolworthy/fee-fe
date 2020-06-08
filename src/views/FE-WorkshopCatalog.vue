@@ -59,12 +59,11 @@ export default {
 <style lang="scss" scoped>
 .fe-workshop-wrap{
   padding-top: 1.25rem;
-  width: 80vw;
-  max-width: 87.5rem;
+  width: calc(80vw + 1.875rem);
+  max-width: 89.375rem;
   margin: auto;
   height: calc(100vh - 25rem);
   display:flex;
   flex-direction:column;
-  overflow-x: visible;
 }
 </style>

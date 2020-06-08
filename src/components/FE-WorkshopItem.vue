@@ -119,5 +119,6 @@ export default {
 
 .fe-card:hover {
   transform: scale(1.1);
+  z-index: 10;
 }
 </style>

@@ -28,6 +28,8 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   flex:1;
+  overflow: scroll;
+  padding:0.938rem;
 }
 
 .fe-workshop-item {

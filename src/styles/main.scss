@@ -2,7 +2,7 @@
 
 .v-content {
   width: 100%;
-  padding-top: 10px;
+  padding-top: 0.625rem;
 }
 
 .hero-image {
@@ -22,8 +22,8 @@
 
 .fe-section-divider {
   border-color: #666;
-  border-width: 1px;
-  border-radius: .5px;
+  border-width: 0.063rem;
+  border-radius: 0.031rem;
 }
 
 .fe-card-stat-container {
@@ -53,7 +53,7 @@
 
 @media (max-width:1000px) { 
   .fe-workshop-wrap {
-    height: calc(100vh - 300px)
+    height: calc(100vh - 18.75rem)
   }
 
   .hero-image {
