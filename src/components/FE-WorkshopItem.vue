@@ -19,6 +19,18 @@
               transition-fast-in-fast-out
               fe-card-reveal"
           >
+            <span class="fe-card-tags">
+              <v-chip
+                v-for="tag in carddata.tags"
+                :key="tag.tag"
+                x-small
+                :color="getTagColor(tag.tag)"
+                text-color="white"
+                class="fe-card-tag"
+              >
+                {{ tag.tag }}
+              </v-chip>
+            </span>
             <span class="fe-card-stats">
               <fe-upvote :count="carddata.upvotes"></fe-upvote>
               <fe-comment-count :count="carddata.ama.length"></fe-comment-count>
@@ -59,7 +71,9 @@ export default {
     myImage() {
       console.log(this.carddata);
       if (this.carddata.coverImage !== null) {
-        return `${this.carddata.coverImage}`;
+        const tmp = this.carddata.coverImage;
+        const thumb = tmp.replace('https://rht-labs.github.io/fee-media/images/', 'https://rht-labs.github.io/fee-media/images/thumb_');
+        return thumb;
       }
       // eslint-disable-next-line global-require
       return require('@/assets/defaultimg.png');
@@ -68,6 +82,22 @@ export default {
   methods: {
     openPost() {
       this.$router.push({ name: 'workshop', params: { slug: this.carddata.slug } });
+    },
+    getTagColor(tag) {
+      switch (tag) {
+        case '100':
+          return '#259186';
+        case '200':
+          return '#2077C7';
+        case '300':
+          return '#B65585';
+        case '400':
+          return '#8B5E00';
+        case '500':
+          return '#597100';
+        default:
+          return '#EE0200';
+      }
     },
   },
 };
@@ -79,6 +109,18 @@ export default {
   font-weight: 300;
   color: #EE0200;
   padding: 4px;
+}
+
+.fe-card-tags {
+  bottom: 0px;
+  padding: 0.625rem;
+  position: absolute;
+  right: 0px;
+  max-width: 50%;
+}
+
+.fe-card-tag {
+  margin-left: 0.313rem;
 }
 
 .fe-card-stats {
@@ -101,6 +143,7 @@ export default {
   padding: 0.625rem;
   left: 0px;
   position: absolute;
+  max-width: 50%;
 }
 
 .fe-card-reveal {
