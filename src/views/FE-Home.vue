@@ -5,8 +5,17 @@
       src='@/assets/homebanner.jpg'
       max-height='350px'
     ></v-img>
-    <div>Home</div>
-    <v-btn @click="openCatalog">Catalog</v-btn>
+    <div class='fe-home-content'>
+      <h1 class="">What is the frontend enablement?</h1>
+      <p>The fronend enablement is a curated series of essays and workshops on the art
+        and science of frontend development. We follow the career path of an aspiring
+        developer to illustrate the core and advanced competencies of the trade. You can
+        think of each workshop as a knowledge booster pack on a specific competency - the
+        bare bones introduction to the tech with working examples and currated references
+        for continued growth.
+      </p>
+      <v-btn @click="openCatalog">Catalog</v-btn>
+    </div>
   </div>
 </template>
 
@@ -22,3 +31,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.fe-home-content{
+  padding-top: 1.875rem;
+  width: 80vw;
+  max-width: 87.5rem;
+  margin: auto;
+}
+</style>

@@ -72,7 +72,7 @@ export default {
       console.log(this.carddata);
       if (this.carddata.coverImage !== null) {
         const tmp = this.carddata.coverImage;
-        const thumb = tmp.replace('https://rht-labs.github.io/fee-media/images/', 'https://rht-labs.github.io/fee-media/images/thumb_');
+        const thumb = tmp.replace('/images/', '/thumbs/');
         return thumb;
       }
       // eslint-disable-next-line global-require
