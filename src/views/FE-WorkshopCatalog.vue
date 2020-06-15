@@ -62,7 +62,6 @@ export default {
   width: calc(80vw + 1.875rem);
   max-width: 89.375rem;
   margin: auto;
-  height: calc(100vh - 25rem);
   display:flex;
   flex-direction:column;
 }

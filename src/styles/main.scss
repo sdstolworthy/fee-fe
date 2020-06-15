@@ -41,6 +41,10 @@
   margin-top: -0.188rem;
 }
 
+.fe-workshop-wrap {
+  height: calc(100vh - 25rem);
+}
+
 @media (max-width:1300px) { 
   .fe-workshop-wrap {
     height: calc(100vh - 21.875rem)

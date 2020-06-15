@@ -2,10 +2,11 @@
 <template>
   <v-hover v-slot:default="{ hover }">
     <v-card
-      class="mx-auto my-8 fe-card"
+      class="mx-auto my-2 fe-card"
       width="33%"
       max-width="500"
       @click="openPost"
+      outlined
     >
       <v-img
         :src='myImage'
@@ -69,7 +70,6 @@ export default {
   },
   computed: {
     myImage() {
-      console.log(this.carddata);
       if (this.carddata.coverImage !== null) {
         const tmp = this.carddata.coverImage;
         const thumb = tmp.replace('/images/', '/thumbs/');
@@ -84,6 +84,7 @@ export default {
       this.$router.push({ name: 'workshop', params: { slug: this.carddata.slug } });
     },
     getTagColor(tag) {
+      console.log(tag);
       switch (tag) {
         case '100':
           return '#259186';
@@ -94,7 +95,11 @@ export default {
         case '400':
           return '#8B5E00';
         case '500':
-          return '#597100';
+          return '#918625';
+        case 'HTML':
+          return '#256691';
+        case 'CSS':
+          return '#912530';
         default:
           return '#EE0200';
       }
@@ -112,10 +117,10 @@ export default {
 }
 
 .fe-card-tags {
-  bottom: 0px;
+  top: 0px;
   padding: 0.625rem;
   position: absolute;
-  right: 0px;
+  left: 0px;
   max-width: 50%;
 }
 
@@ -158,10 +163,14 @@ export default {
 
 .fe-card {
   transition: all .2s ease-in-out;
+  border: thin solid #ffffff !important;
 }
 
 .fe-card:hover {
   transform: scale(1.1);
   z-index: 10;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+              0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
 </style>
