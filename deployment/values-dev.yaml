@@ -3,7 +3,7 @@ development: true
 
 servicePort: 8080
 
-imageName: fee-fe"
+imageName: "fee-fe"
 imageTag: "latest"
 
 git:
@@ -11,4 +11,6 @@ git:
   ref: master
 
 baseUrl: url
-
+clientId: secret
+authBaseUrl: url
+backendUrl: url

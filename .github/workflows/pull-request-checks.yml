@@ -48,10 +48,10 @@ jobs:
       with:
         path: "./build"
         base: registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4
-        image: omp-frontend:latest
+        image: fee-fe:latest
     - name: Export Container Image
       run: |
-        docker save --output omp-frontend.tar omp-frontend:latest
+        docker save --output fee-fe.tar fee-fe:latest
     - uses: actions/upload-artifact@v2
       with:
         name: omp-frontend.tar

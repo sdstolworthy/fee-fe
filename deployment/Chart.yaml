@@ -1,6 +1,6 @@
 apiVersion: v2
 name: fee-fe
-description: A Helm chart to deploy the interface for the frontend enablement
+description: A Helm chart to deploy the frontend enablement site
 
 # A chart can be either an 'application' or a 'library' chart.
 #
