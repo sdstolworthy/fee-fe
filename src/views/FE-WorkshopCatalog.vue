@@ -16,8 +16,8 @@
       ></v-progress-circular>
     </div>
     <div class="fe-workshop-wrap">
-      <fe-workshop-filter v-show='dataLoaded'></fe-workshop-filter>
-      <fe-workshop-pane v-if="dataLoaded" :workshopItems='practices'></fe-workshop-pane>
+      <fe-workshop-filter v-show='dataLoaded' @update="onFilterSelection"></fe-workshop-filter>
+      <fe-workshop-pane v-if="dataLoaded" :workshopItems='filteredList'></fe-workshop-pane>
     </div>
   </div>
 </template>
@@ -37,11 +37,26 @@ export default {
     openPost() {
       this.$router.push({ name: 'post', params: { slug: 'event-storming' } });
     },
+    onFilterSelection(newData) {
+      this.tagFilter = newData;
+    },
   },
   data() {
     return {
       dataLoaded: false,
+      tagFilter: [],
     };
+  },
+  computed: {
+    filteredList() {
+      if (this.tagFilter.length === 0) {
+        return this.practices;
+      }
+      return this.practices.filter((post) => {
+        const found = post.tags.some((v) => this.tagFilter.indexOf(v.tag) !== -1);
+        return found;
+      });
+    },
   },
   watch: {
     practices() {

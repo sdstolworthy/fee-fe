@@ -31,8 +31,9 @@
                 class="fe-post-avatar"
               >
                 <img
+                  v-if="post.authors"
                   alt="Avatar"
-                  src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+                  :src="post.authors[0].Avatar"
                 >
                 <!-- <v-icon
                   v-else
@@ -109,7 +110,7 @@ export default {
       return require('@/assets/defaultimg.png');
     },
     myPlaceholder() {
-      if (this.post.coverImage !== null) {
+      if (this.post.coverImage !== null && this.post.coverImage !== undefined) {
         const tmp = this.post.coverImage;
         const thumb = tmp.replace('/images/', '/thumbs/');
         return thumb;

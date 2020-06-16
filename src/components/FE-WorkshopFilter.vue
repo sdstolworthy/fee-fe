@@ -1,39 +1,123 @@
 <template>
-  <div class="fe-workshop-filter">
-    <div class="fe-workshop-filter-large">
-      <span
-        class='fe-filter-item'
-        v-for="(type, index) in practiceTypes"
-        :key="`type-${index}`"
-      >
-        {{type}}
-      </span>
-    </div>
-    <v-select
-      :items="practiceTypes"
-      label="Filter Practices"
-      class="fe-workshop-filter-small"
-    ></v-select>
-  </div>
+  <v-container fluid>
+    <v-combobox
+      v-model="model"
+      :filter="filter"
+      :hide-no-data="!search"
+      :items="items"
+      :search-input.sync="search"
+      hide-selected
+      label="Filter by tags"
+      multiple
+      small-chips
+    >
+      <template v-slot:no-data>
+        <v-list-item>
+          <span class="subheading">Create</span>
+          <v-chip
+            :color="getTagColor(search)"
+            small
+          >
+            {{ search }}
+          </v-chip>
+        </v-list-item>
+      </template>
+      <template v-slot:selection="{ attrs, item, parent, selected }">
+        <v-chip
+          v-if="item === item"
+          v-bind="attrs"
+          :color="getTagColor(item)"
+          :input-value="selected"
+          small
+          text-color=#ffffff
+        >
+          <span class="pr-2">
+            {{ item }}
+          </span>
+          <v-icon
+            small
+            @click="parent.selectItem(item)"
+          >mdi-close</v-icon>
+        </v-chip>
+      </template>
+      <template v-slot:item="{ item }">
+        <v-chip
+          :color="getTagColor(item)"
+          dark
+          small
+        >
+          {{ item }}
+        </v-chip>
+      </template>
+    </v-combobox>
+  </v-container>
 </template>
 
 <script>
 export default {
   name: 'FE-WorkshopFilter',
   data: () => ({
-    practiceTypes: [
-      'All',
+    activator: null,
+    attach: null,
+    items: [
       '100',
       '200',
       '300',
       '400',
       '500',
     ],
+    model: [],
+    search: null,
   }),
+  watch: {
+    model(val, prev) {
+      if (val.length === prev.length) return;
+
+      this.model = val.map((v) => v);
+      console.log(this.model);
+      this.$emit('update', this.model);
+    },
+  },
+  methods: {
+    filter(item, queryText, itemText) {
+      const hasValue = (val) => (val != null ? val : '');
+
+      const text = hasValue(itemText);
+      const query = hasValue(queryText);
+
+      return text.toString()
+        .toLowerCase()
+        .indexOf(query.toString().toLowerCase()) > -1;
+    },
+    getTagColor(tag) {
+      switch (tag) {
+        case '100':
+          return '#259186';
+        case '200':
+          return '#2077C7';
+        case '300':
+          return '#B65585';
+        case '400':
+          return '#8B5E00';
+        case '500':
+          return '#918625';
+        case 'HTML':
+          return '#256691';
+        case 'CSS':
+          return '#912530';
+        default:
+          return '#EE0200';
+      }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.subheading {
+  margin-right: 5px;
+}
+
 .fe-workshop-filter-large{
   display: flex;
   width: 100%;

@@ -84,7 +84,6 @@ export default {
       this.$router.push({ name: 'workshop', params: { slug: this.carddata.slug } });
     },
     getTagColor(tag) {
-      console.log(tag);
       switch (tag) {
         case '100':
           return '#259186';
