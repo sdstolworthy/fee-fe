@@ -16,15 +16,15 @@
         <v-divider class="fe-section-divider"></v-divider>
         <div class="fe-post-workshop-details">
           <div class="fe-post-time">
-            <span class="fe-post-contributor-label">time to complete: 1.25 hours </span>
+            <span class="fe-post-contributor-label">Time to Complete: 1.25 hours </span>
           </div>
           <div class="fe-post-difficulty">
-            <span class="fe-post-date">difficulty: beginner </span>
+            <span class="fe-post-date">Difficulty: beginner </span>
           </div>
         </div>
         <div class="fe-post-publish-details">
           <div class="fe-post-contributors">
-            <span class="fe-post-contributor-label">contributed by:</span>
+            <span class="fe-post-contributor-label">Contributed by:</span>
             <span class="fe-post-contributor-pill">
               <v-avatar
                 size="20px"
@@ -164,7 +164,7 @@ export default {
 .fe-post-body,
 .fe-post-header {
   width: 80vw;
-  max-width: 62.5rem;
+  max-width: 89.375rem;
   margin: auto;
 }
 
@@ -215,5 +215,46 @@ export default {
 .hero-image {
   margin-top: .625rem;
   margin-bottom: .625rem;
+}
+
+@media (max-width:500px) {
+  .fe-post-title {
+    font-size: 1.5rem;
+  }
+
+  .fe-post-subtitle {
+    font-size: .8rem;
+    margin-top: .313rem;
+    margin-bottom: .5rem;
+  }
+
+  .fe-post-workshop-details,
+  .fe-post-publish-details,
+  .fe-post-contributors {
+    display: inline-block;
+    width: 100%;
+    padding: 0px;
+  }
+
+  .fe-post-date,
+  .fe-post-difficulty,
+  .fe-post-contributor-pill-label,
+  .fe-post-contributor-label,
+  .fe-post-time {
+    font-size: .6rem;
+    width: 100%;
+    text-align: left;
+    pading: 0px;
+    line-height: 1rem;
+  }
+
+  .fe-post-contributor-pill {
+    border: none;
+    padding: 0px;
+  }
+
+  .fe-post-avatar {
+    display: none;
+  }
 }
 </style>
