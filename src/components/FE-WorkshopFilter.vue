@@ -16,7 +16,7 @@
           <span class="subheading">Create</span>
           <v-chip
             :color="getTagColor(search)"
-            small
+            x-small
           >
             {{ search }}
           </v-chip>
@@ -28,14 +28,14 @@
           v-bind="attrs"
           :color="getTagColor(item)"
           :input-value="selected"
-          small
+          x-small
           text-color=#ffffff
         >
           <span class="pr-2">
             {{ item }}
           </span>
           <v-icon
-            small
+            x-small
             @click="parent.selectItem(item)"
           >mdi-close</v-icon>
         </v-chip>
@@ -44,7 +44,7 @@
         <v-chip
           :color="getTagColor(item)"
           dark
-          small
+          x-small
         >
           {{ item }}
         </v-chip>
@@ -56,16 +56,12 @@
 <script>
 export default {
   name: 'FE-WorkshopFilter',
+  props: {
+    items: Array,
+  },
   data: () => ({
     activator: null,
     attach: null,
-    items: [
-      '100',
-      '200',
-      '300',
-      '400',
-      '500',
-    ],
     model: [],
     search: null,
   }),

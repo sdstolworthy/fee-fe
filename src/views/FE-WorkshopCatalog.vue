@@ -16,7 +16,11 @@
       ></v-progress-circular>
     </div>
     <div class="fe-workshop-wrap">
-      <fe-workshop-filter v-show='dataLoaded' @update="onFilterSelection"></fe-workshop-filter>
+      <fe-workshop-filter
+        v-show='dataLoaded'
+        :items='tags'
+        @update="onFilterSelection"
+      ></fe-workshop-filter>
       <fe-workshop-pane v-if="dataLoaded" :workshopItems='filteredList'></fe-workshop-pane>
     </div>
   </div>
@@ -56,6 +60,16 @@ export default {
         const found = post.tags.some((v) => this.tagFilter.indexOf(v.tag) !== -1);
         return found;
       });
+    },
+    tags() {
+      let filtered = [];
+      if (this.practices) {
+        const result = this.practices.map(({ tags }) => tags.map(({ tag }) => tag));
+        const flattenedArray = [].concat(...result);
+        // eslint-disable-next-line max-len
+        filtered = flattenedArray.reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]), []);
+      }
+      return filtered;
     },
   },
   watch: {

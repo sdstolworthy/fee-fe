@@ -10,9 +10,6 @@ spec:
   {{- end }}
   port:
     targetPort: "{{ .Values.servicePort }}-tcp"
-  tls:
-    insecureEdgeTerminationPolicy: Redirect
-    termination: edge
   to:
     kind: Service
     name: {{ .Values.name }}
