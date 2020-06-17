@@ -57,7 +57,13 @@ export default {
         return this.practices;
       }
       return this.practices.filter((post) => {
-        const found = post.tags.some((v) => this.tagFilter.indexOf(v.tag) !== -1);
+        // Set for AND filtering - it has all values being passed in...
+        // Comment out the following 3 lines and uncomment the one below
+        // if we decide that we want OR filtering... It has this tag OR this tag...
+        const postTags = post.tags.map((x) => x.tag);
+        const checkAll = (arr, target) => target.every((v) => arr.includes(v));
+        const found = checkAll(postTags, this.tagFilter);
+        // const found = post.tags.some((v) => this.tagFilter.indexOf(v.tag) !== -1);
         return found;
       });
     },

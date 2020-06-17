@@ -70,7 +70,6 @@ export default {
       if (val.length === prev.length) return;
 
       this.model = val.map((v) => v);
-      console.log(this.model);
       this.$emit('update', this.model);
     },
   },
