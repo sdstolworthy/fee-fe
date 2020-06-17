@@ -54,8 +54,8 @@ jobs:
         docker save --output fee-fe.tar fee-fe:latest
     - uses: actions/upload-artifact@v2
       with:
-        name: omp-frontend.tar
-        path: omp-frontend.tar
+        name: fee-fe.tar
+        path: fee-fe.tar
 
 #  security-scan:
 #    runs-on: ubuntu-latest

@@ -31,7 +31,8 @@ helm template . \
   --values values-dev.yaml \
   --set git.uri=https://github.com/rht-labs/fee-fe.git \
   --set git.ref=master \
-  --set baseUrl=https://fee-fe-fe-enablement-dev.apps.s44.core.rht-labs.com \
+  --set baseUrl=http://fee-fe-fe-enablement-dev.apps.s44.core.rht-labs.com \
+   --set hostname=fee-fe.apps.s44.core.rht-labs.com \
 | oc apply -f -
 ```
 
