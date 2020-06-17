@@ -29,9 +29,7 @@ export default {
   justify-content: space-between;
   flex:1;
   overflow: scroll;
-  padding-left:0.938rem;
-  padding-right:0.938rem;
-  padding-bottom: 0.938rem;
+  padding:0.938rem;
 }
 
 .fe-workshop-item {
