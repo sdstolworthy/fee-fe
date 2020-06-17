@@ -217,7 +217,25 @@ export default {
   margin-bottom: .625rem;
 }
 
-@media (max-width:500px) {
+@media (max-width:750px) {
+  .fe-post-title {
+    font-size: 2rem;
+  }
+
+  .fe-post-subtitle {
+    font-size: .95rem;
+  }
+
+  .fe-post-date,
+  .fe-post-difficulty,
+  .fe-post-contributor-pill-label,
+  .fe-post-contributor-label,
+  .fe-post-time {
+    font-size: .7rem;
+  }
+}
+
+@media (max-width:400px) {
   .fe-post-title {
     font-size: 1.5rem;
   }
