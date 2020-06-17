@@ -25,7 +25,7 @@ spec:
       COPY . /app
       RUN ./build.sh
       FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4
-      COPY --from=builder /app/build /var/www/html
+      COPY --from=builder /app/dist /var/www/html
       EXPOSE 8080
   strategy:
     type: Docker
