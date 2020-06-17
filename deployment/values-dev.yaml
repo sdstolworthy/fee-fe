@@ -1,0 +1,16 @@
+name: fee-fe
+development: true
+
+servicePort: 8080
+
+imageName: "fee-fe"
+imageTag: "latest"
+
+git:
+  uri: https://github.com/rht-labs/fee-fe.git
+  ref: master
+
+baseUrl: url
+clientId: secret
+authBaseUrl: url
+backendUrl: url

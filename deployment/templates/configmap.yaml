@@ -1,0 +1,11 @@
+{{- if .Values.development }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+data:
+  config.json: |
+    {
+      "baseUrl": "{{ .Values.baseUrl }}",
+    }
+{{- end }}
