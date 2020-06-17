@@ -1,6 +1,6 @@
 <template>
   <div class="fe-card-stat-container">
-    <v-icon small class="fe-card-stat-icon">mdi-chat</v-icon> {{count}}
+    <v-icon small class="fe-card-stat-icon">mdi-chat-outline</v-icon> {{count}}
   </div>
 </template>
 
