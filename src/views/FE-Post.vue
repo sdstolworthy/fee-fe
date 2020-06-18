@@ -25,23 +25,27 @@
         <div class="fe-post-publish-details">
           <div class="fe-post-contributors">
             <span class="fe-post-contributor-label">Contributed by:</span>
-            <span class="fe-post-contributor-pill">
+            <span
+              v-for="author in post.authors"
+              :key="author"
+              class="fe-post-contributor-pill">
               <v-avatar
                 size="20px"
                 class="fe-post-avatar"
               >
                 <img
-                  v-if="post.authors"
+                  v-if="author.Avatar"
                   alt="Avatar"
-                  :src="post.authors[0].Avatar"
+                  :src="author.Avatar"
                 >
-                <!-- <v-icon
+                <v-icon
                   v-else
-                  color="#EE0200"
-                  v-text="account-circle"
-                ></v-icon> -->
+                  color="#A0A0A0"
+                >mdi-account-circle</v-icon>
               </v-avatar>
-              <span class="fe-post-contributor-pill-label">{{author}}</span>
+              <span class="fe-post-contributor-pill-label">
+                {{author.firstName}} {{author.lastName}}
+              </span>
             </span>
           </div>
           <div class="fe-post-date">Last update: {{postDate}}</div>
@@ -118,12 +122,6 @@ export default {
       // eslint-disable-next-line global-require
       return require('@/assets/defaultimg.png');
     },
-    author() {
-      if (this.post.authors) {
-        return `${this.post.authors[0].firstName} ${this.post.authors[0].lastName}`;
-      }
-      return '';
-    },
     postDate() {
       const dt = DateTime.fromISO(this.post.updatedAt);
       return dt.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
@@ -187,8 +185,7 @@ export default {
 .fe-post-contributor-pill {
   border: 1px solid #a0a0a0;
   border-radius: .625rem;
-  padding: 0rem .188rem 0rem .125rem;
-  padding-bottom: .25rem;
+  padding: 0rem .2rem 0.2rem .05rem;
 }
 
 .fe-post-contributor-pill-label {
