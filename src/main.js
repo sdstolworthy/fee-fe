@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import ApolloClient from 'apollo-boost';
+import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import VueApollo from 'vue-apollo';
 import App from './App.vue';
 import './registerServiceWorker';
@@ -10,8 +10,24 @@ import vuetify from './plugins/vuetify';
 Vue.use(VueApollo);
 
 const apolloClient = new ApolloClient({
-  // You should use an absolute URL here
-  uri: 'http://opl-content-api-fe-enablement-dev.apps.s44.core.rht-labs.com/graphql',
+  uri: process.env.VUE_APP_CMSURL,
+  cache: new InMemoryCache(),
+  request: (operation) => {
+    const token = localStorage.getItem('jwt');
+    operation.setContext({
+      headers: token ? {
+        authorization: `Bearer ${token}`,
+      } : {},
+    });
+  },
+  onError: ({ networkError, graphQLErrors }) => {
+    if (graphQLErrors) {
+      console.warn('graphQLErrors', graphQLErrors);
+    }
+    if (networkError) {
+      console.warn('networkError', networkError);
+    }
+  },
 });
 
 const apolloProvider = new VueApollo({

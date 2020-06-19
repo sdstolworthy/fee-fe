@@ -6,33 +6,29 @@
     color="#ffffff"
     flat
   >
-    <div class="d-flex align-center">
       <v-img
         alt="FEE Logo"
-        class="shrink mr-2 show-link"
+        class="shrink mr-2 show-link fe-header-img"
         contain
         src="@/assets/logo.png"
         transition="scale-transition"
         @click="goHome()"
       />
-    </div>
 
     <v-spacer></v-spacer>
 
-    <!-- <v-btn
-      href="https://github.com/vuetifyjs/vuetify/releases/latest"
-      target="_blank"
-      text
-    >
-      <span class="mr-2">Latest Release</span>
-      <v-icon>mdi-open-in-new</v-icon>
-    </v-btn> -->
+    <fe-auth></fe-auth>
   </v-app-bar>
 </template>
 
 <script>
+import FeAuth from '@/components/FE-Auth.vue';
+
 export default {
-  name: 'O-Header',
+  name: 'FE-Header',
+  components: {
+    FeAuth,
+  },
   methods: {
     goHome() {
       this.$router.push({ name: 'Home' });
