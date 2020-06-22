@@ -56,6 +56,16 @@
       max-width="450"
     >
       <v-card>
+        <div
+          class="fe-dialog-loader-background"
+          v-show='loading'></div>
+        <v-progress-circular
+        :size="40"
+        :width="7"
+        class="fe-dialog-loader"
+        v-show='loading'
+        indeterminate
+        ></v-progress-circular>
         <v-card-title class="headline">Login</v-card-title>
 
         <v-card-text>
@@ -110,6 +120,16 @@
       max-width="450"
     >
       <v-card>
+        <div
+          class="fe-dialog-loader-background"
+          v-show='loading'></div>
+        <v-progress-circular
+        :size="40"
+        :width="7"
+        class="fe-dialog-loader"
+        v-show='loading'
+        indeterminate
+        ></v-progress-circular>
         <v-card-title class="headline">Register</v-card-title>
 
         <v-card-text>
@@ -299,6 +319,24 @@ export default {
 
 .fe-login-btn {
   max-width: .2vw;
+}
+
+.fe-dialog-loader {
+  position: absolute;
+  line-height: 100%;
+  margin-right: 50%;
+  margin-left: 50%;
+  top: calc(50% - 20px);
+  z-index: 10;
+  color: #EE0200;
+}
+
+.fe-dialog-loader-background {
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width:550px) {
