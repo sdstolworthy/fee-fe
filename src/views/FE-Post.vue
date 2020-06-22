@@ -27,7 +27,7 @@
             <span class="fe-post-contributor-label">Contributed by:</span>
             <span
               v-for="author in post.authors"
-              :key="author"
+              :key="author.id"
               class="fe-post-contributor-pill">
               <v-avatar
                 size="20px"

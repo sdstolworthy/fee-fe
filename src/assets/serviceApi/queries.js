@@ -70,3 +70,41 @@ export const GET_WORKSHOP = gql`
     }
   }
 `;
+
+export const GET_USER = gql`
+  query user ($id: ID!) {
+    user(id: $id) {
+      username
+      email
+      firstName
+      lastName
+      Avatar 
+    }
+  }
+`;
+
+export const LOGIN = gql`
+  mutation Login($identifier: String!, $password: String!) {
+    login(
+      input: { identifier: $identifier, password: $password }
+    ) {
+      jwt
+      user {
+        id
+      }
+    }
+  }
+`;
+
+export const REGISTER = gql`
+  mutation Register($username: String!, $email: String!, $password: String!) {
+    register(
+      input: { username: $username, email: $email, password: $password }
+    ) {
+      jwt
+      user {
+        id
+      }
+    }
+  }
+`;

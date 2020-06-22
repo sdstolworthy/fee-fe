@@ -16,7 +16,9 @@ export default new Vuex.Store({
       this.state.catalog = data;
     },
     setUser(state, user) {
-      this.state.user = user;
+      console.log(user);
+      this.state.user = user.user;
+      this.state.jwt = user.jwt;
     },
     logout() {
       this.state.user = null;

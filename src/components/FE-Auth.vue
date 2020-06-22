@@ -44,6 +44,9 @@
     </v-menu>
     <v-btn
       v-else
+      outlined
+      small
+      color='#EE0200'
       @click.stop='loginDialog=true'
     >
       Login
@@ -166,7 +169,8 @@
 
 <script>
 import { mapMutations } from 'vuex';
-import strapi from '@/utils/Strapi';
+// import strapi from '@/utils/Strapi';
+import { LOGIN, GET_USER, REGISTER } from '@/assets/serviceApi/queries.js';
 
 export default {
   name: 'FE-Auth',
@@ -190,7 +194,6 @@ export default {
     };
   },
   computed: {
-    // Set your username thanks to your getter
     username() {
       return this.$store.getters.username;
     },
@@ -205,18 +208,47 @@ export default {
     },
   },
   methods: {
+    async getUserData(data) {
+      this.$apollo.query({
+        query: GET_USER,
+        variables: { id: data.user.id },
+      })
+        .then((response) => {
+          const tmpUser = {};
+          tmpUser.user = {
+            ...data.user,
+            ...response.data.user,
+          };
+          tmpUser.jwt = data.jwt;
+          localStorage.setItem('jwt', data.jwt);
+          this.email = '';
+          this.password = '';
+          this.loginDialog = false;
+          this.loading = false;
+          this.regUsername = '';
+          this.regPassword = '';
+          this.regEmail = '';
+          this.confirmPassword = '';
+          this.registerDialog = false;
+          this.setUser(tmpUser);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     async login() {
       try {
         this.loading = true;
-        const response = await strapi.login(
-          this.email,
-          this.password,
-        );
-        this.email = '';
-        this.password = '';
-        this.loginDialog = false;
-        this.loading = false;
-        this.setUser(response.user);
+        this.$apollo.mutate({
+          mutation: LOGIN,
+          variables: {
+            identifier: this.email, password: this.password,
+          },
+          update: (proxy, { data }) => {
+            localStorage.setItem('jwt', data.login.jwt);
+            this.getUserData(data.login);
+          },
+        });
       } catch (err) {
         this.loading = false;
         // eslint-disable-next-line no-alert
@@ -230,20 +262,16 @@ export default {
     async register() {
       try {
         this.loading = true;
-        const response = await strapi.register(
-          this.regUsername,
-          this.regEmail,
-          this.regPassword,
-        );
-        this.regUsername = '';
-        this.email = '';
-        this.password = '';
-        this.regPassword = '';
-        this.regEmail = '';
-        this.confirmPassword = '';
-        this.registerDialog = false;
-        this.loading = false;
-        this.setUser(response.user);
+        this.$apollo.mutate({
+          mutation: REGISTER,
+          variables: {
+            username: this.regUsername, email: this.regEmail, password: this.regPassword,
+          },
+          update: (proxy, { data }) => {
+            localStorage.setItem('jwt', data.register.jwt);
+            this.getUserData(data.register);
+          },
+        });
       } catch (err) {
         this.loading = false;
         // eslint-disable-next-line no-alert
@@ -251,9 +279,6 @@ export default {
       }
     },
     async logoutUser() {
-      await strapi.clearToken(
-        localStorage.getItem('jwt'),
-      );
       this.logout();
     },
     ...mapMutations({
