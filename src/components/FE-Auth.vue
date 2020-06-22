@@ -221,15 +221,7 @@ export default {
           };
           tmpUser.jwt = data.jwt;
           localStorage.setItem('jwt', data.jwt);
-          this.email = '';
-          this.password = '';
-          this.loginDialog = false;
-          this.loading = false;
-          this.regUsername = '';
-          this.regPassword = '';
-          this.regEmail = '';
-          this.confirmPassword = '';
-          this.registerDialog = false;
+          this.clearDialogs();
           this.setUser(tmpUser);
         })
         .catch((err) => {
@@ -258,6 +250,17 @@ export default {
     showRegister() {
       this.loginDialog = false;
       this.registerDialog = true;
+    },
+    clearDialogs() {
+      this.email = '';
+      this.password = '';
+      this.loginDialog = false;
+      this.loading = false;
+      this.regUsername = '';
+      this.regPassword = '';
+      this.regEmail = '';
+      this.confirmPassword = '';
+      this.registerDialog = false;
     },
     async register() {
       try {
