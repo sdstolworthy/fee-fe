@@ -169,7 +169,6 @@
 
 <script>
 import { mapMutations } from 'vuex';
-// import strapi from '@/utils/Strapi';
 import { LOGIN, GET_USER, REGISTER } from '@/assets/serviceApi/queries.js';
 
 export default {
