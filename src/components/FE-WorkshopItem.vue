@@ -54,10 +54,11 @@
 <script>
 import FeUpvote from '@/components/FE-Upvote.vue';
 import FeCommentCount from '@/components/FE-CommentCount.vue';
-
+import getTagColor from '@/mixins/getTagColor.js';
 
 export default {
   name: 'FE-WorkshopItem',
+  mixins: [getTagColor],
   components: {
     FeUpvote,
     FeCommentCount,
@@ -82,26 +83,6 @@ export default {
   methods: {
     openPost() {
       this.$router.push({ name: 'workshop', params: { slug: this.carddata.slug } });
-    },
-    getTagColor(tag) {
-      switch (tag) {
-        case '100':
-          return '#259186';
-        case '200':
-          return '#2077C7';
-        case '300':
-          return '#B65585';
-        case '400':
-          return '#8B5E00';
-        case '500':
-          return '#918625';
-        case 'HTML':
-          return '#256691';
-        case 'CSS':
-          return '#912530';
-        default:
-          return '#EE0200';
-      }
     },
   },
 };
