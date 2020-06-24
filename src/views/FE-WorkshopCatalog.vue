@@ -74,6 +74,7 @@ export default {
         const flattenedArray = [].concat(...result);
         // eslint-disable-next-line max-len
         filtered = flattenedArray.reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]), []);
+        filtered.sort();
       }
       return filtered;
     },

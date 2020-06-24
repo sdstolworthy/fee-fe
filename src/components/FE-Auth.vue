@@ -312,6 +312,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/vars.scss";
 
 .fe-post-avatar {
   margin-right: 5px;
@@ -328,7 +329,7 @@ export default {
   margin-left: 50%;
   top: calc(50% - 20px);
   z-index: 10;
-  color: #EE0200;
+  color: $fe-highlight-color;
 }
 
 .fe-dialog-loader-background {
@@ -336,7 +337,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $fe-modal-background-color;
 }
 
 @media (max-width:550px) {
