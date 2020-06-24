@@ -45,6 +45,9 @@ spec:
           {{- else }}
           mountPath: /opt/app-root/src/config
           {{- end }}
+        - name: httpd-volume
+          mountPath: /etc/httpd/conf.d/fe-httpd.conf
+          subPath: fe-httpd.conf
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -54,6 +57,9 @@ spec:
       - name: config-volume
         configMap:
           name: frontend-config
+      - name: httpd-volume
+        configMap:
+          name: httpd-config
   triggers: 
   - type: ConfigChange
   - type: ImageChange

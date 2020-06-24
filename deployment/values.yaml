@@ -4,3 +4,6 @@ servicePort: 8080
 
 imageName: "quay.io/rht-labs/fee-fe"
 imageTag: "latest" # This is intended to be overridden by the parent Helm chart.
+
+httpdConfig: |
+    FallbackResource / 
