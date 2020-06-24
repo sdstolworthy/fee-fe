@@ -142,18 +142,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/vars.scss";
+
 .fe-post-header {
   padding: auto;
 }
 
 .fe-post-title {
-  color: #2e2e2e;
+  color: $body-color;
   font-size: 2.5rem;
   line-height: normal;
 }
 
 .fe-post-subtitle {
-  color: #717171;
+  color: $subtitle-color;
   font-size: 1.1rem;
   line-height: normal;
   margin-top: .313rem;
@@ -171,7 +173,7 @@ export default {
 .fe-post-workshop-details {
   display: flex;
   padding-top: .5rem;
-  color: #a0a0a0;
+  color: $stat-color;
 }
 
 .fe-post-publish-details {
@@ -184,7 +186,7 @@ export default {
 }
 
 .fe-post-contributor-pill {
-  border: 1px solid #a0a0a0;
+  border: 0.031rem solid $stat-color;
   border-radius: .625rem;
   padding: 0rem .2rem 0.2rem .05rem;
 }
@@ -199,7 +201,8 @@ export default {
 }
 
 .fe-post-avatar {
-  margin-right: .313rem;
+  margin-right: .125rem;
+  margin-left: .125rem;
 }
 
 .fe-post-date,

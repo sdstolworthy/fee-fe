@@ -89,11 +89,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/vars.scss";
+
 .fe-card-title {
   transition: all .2s ease-in-out;
   font-size: 1.05rem;
   font-weight: 300;
-  color: #2e2e2e;
+  color: $body-color;
   padding: 4px;
 }
 
@@ -156,6 +158,6 @@ export default {
 }
 
 .fe-card:hover .fe-card-title{
-  color: red;
+  color: $fe-highlight-color;
 }
 </style>
