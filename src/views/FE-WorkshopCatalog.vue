@@ -2,7 +2,7 @@
   <div>
     <div class='hero-image'>
       <v-img
-        src='@/assets/kandinsky.jpg'
+        src='@/assets/catalog.jpg'
         class="hero-image"
       ></v-img>
     </div>
