@@ -1,5 +1,6 @@
 <template>
   <div class="fe-post-container">
+    <v-divider class="fe-section-divider"></v-divider>
     <div class="fe-practices-loader">
       <v-progress-circular
       :size="70"
