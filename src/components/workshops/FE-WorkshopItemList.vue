@@ -90,7 +90,7 @@ export default {
   margin: .25rem 0.625rem .25rem 0rem;
 }
 .fe-card-tags {
-  bottom: 0.125rem;
+  bottom: 0.1rem;
   position: absolute;
 }
 
