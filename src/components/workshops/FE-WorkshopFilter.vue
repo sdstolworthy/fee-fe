@@ -1,7 +1,19 @@
 <template>
-  <v-container fluid>
+  <v-container class="fe-workshop-filter-large" fluid>
+    <v-btn-toggle
+      v-model="viewModel"
+      mandatory
+      class="fe-catalog-view"
+    >
+      <v-btn small>
+        <v-icon small>mdi-view-grid</v-icon>
+      </v-btn>
+      <v-btn small>
+        <v-icon small>mdi-format-list-text</v-icon>
+      </v-btn>
+    </v-btn-toggle>
     <v-combobox
-      v-model="model"
+      v-model="tagModel"
       :filter="filter"
       :hide-no-data="!search"
       :items="items"
@@ -65,15 +77,24 @@ export default {
   data: () => ({
     activator: null,
     attach: null,
-    model: [],
+    tagModel: [],
     search: null,
+    viewModel: undefined,
   }),
   watch: {
-    model(val, prev) {
+    tagModel(val, prev) {
       if (val.length === prev.length) return;
 
-      this.model = val.map((v) => v);
-      this.$emit('update', this.model);
+      this.tagModel = val.map((v) => v);
+      this.$emit('updatefilter', this.tagModel);
+    },
+    viewModel(val) {
+      let type = 'grid';
+
+      if (val === 1) {
+        type = 'list';
+      }
+      this.$emit('updateview', type);
     },
   },
   methods: {
@@ -98,9 +119,13 @@ export default {
 
 .fe-workshop-filter-large{
   display: flex;
-  width: 100%;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+
+.fe-catalog-view {
+  margin-top: 20px;
+  margin-right: 10px;
 }
 
 .fe-workshop-filter-small {

@@ -14,7 +14,7 @@ const routes = [
     path: '/catalog',
     name: 'catalog',
     props: true,
-    component: () => import(/* webpackChunkName: "post" */ '../views/FE-WorkshopCatalog.vue'),
+    component: () => import(/* webpackChunkName: "catalog" */ '../views/FE-WorkshopCatalog.vue'),
   },
   {
     path: '/workshop/:slug',

@@ -57,7 +57,7 @@ import FeCommentCount from '@/components/FE-CommentCount.vue';
 import getTagColor from '@/mixins/getTagColor.js';
 
 export default {
-  name: 'FE-WorkshopItem',
+  name: 'FE-WorkshopItemGrid',
   mixins: [getTagColor],
   components: {
     FeUpvote,

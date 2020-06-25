@@ -19,17 +19,22 @@
       <fe-workshop-filter
         v-show='dataLoaded'
         :items='tags'
-        @update="onFilterSelection"
+        @updatefilter="onFilterSelection"
+        @updateview="onViewSelection"
       ></fe-workshop-filter>
-      <fe-workshop-pane v-if="dataLoaded" :workshopItems='filteredList'></fe-workshop-pane>
+      <fe-workshop-pane
+        v-if="dataLoaded"
+        :view='catalogView'
+        :workshopItems='filteredList'>
+      </fe-workshop-pane>
     </div>
   </div>
 </template>
 
 <script>
 import { GET_WORKSHOPS } from '@/assets/serviceApi/queries.js';
-import FeWorkshopFilter from '@/components/FE-WorkshopFilter.vue';
-import FeWorkshopPane from '@/components/FE-WorkshopPane.vue';
+import FeWorkshopFilter from '@/components/workshops/FE-WorkshopFilter.vue';
+import FeWorkshopPane from '@/components/workshops/FE-WorkshopPane.vue';
 
 export default {
   name: 'FE-WorkshopCatalog',
@@ -44,11 +49,15 @@ export default {
     onFilterSelection(newData) {
       this.tagFilter = newData;
     },
+    onViewSelection(view) {
+      this.catalogView = view;
+    },
   },
   data() {
     return {
       dataLoaded: false,
       tagFilter: [],
+      catalogView: '',
     };
   },
   computed: {
@@ -94,7 +103,6 @@ export default {
 
 <style lang="scss" scoped>
 .fe-workshop-wrap{
-  padding-top: 1.25rem;
   width: calc(80vw + 1.875rem);
   max-width: 89.375rem;
   margin: auto;

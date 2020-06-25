@@ -3,7 +3,7 @@
     app
     clipped-left
     elevate-on-scroll
-    color="#ffffff"
+    color="rgba(255, 255, 255, 0.9)"
     flat
   >
       <v-img
