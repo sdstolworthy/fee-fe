@@ -14,7 +14,7 @@
         bare bones introduction to the tech with working examples and currated references
         for continued growth.
       </p>
-      <v-btn @click="openCatalog">Catalog: Option 1</v-btn>
+      <v-btn @click="openCatalog">Catalog</v-btn>
     </div>
   </div>
 </template>
@@ -40,8 +40,8 @@ export default {
 }
 
 .v-btn {
-  // margin-right: 50vw;
-  // margin-left: 50vw;
+  margin-right: 50%;
+  margin-left: 50%;
   margin-top: 25px;
 }
 </style>
