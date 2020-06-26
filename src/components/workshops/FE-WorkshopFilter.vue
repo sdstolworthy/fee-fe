@@ -12,56 +12,66 @@
         <v-icon small>mdi-format-list-text</v-icon>
       </v-btn>
     </v-btn-toggle>
-    <v-combobox
-      v-model="tagModel"
-      :filter="filter"
-      :hide-no-data="!search"
-      :items="items"
-      :search-input.sync="search"
-      hide-selected
-      label="Filter by tags"
-      multiple
-      small-chips
-    >
-      <template v-slot:no-data>
-        <v-list-item>
-          <span class="subheading">Create</span>
+    <!-- <span class='fe-catalog-filter'> -->
+      <v-combobox
+        v-model="tagModel"
+        :filter="filter"
+        :hide-no-data="!search"
+        :items="items"
+        :search-input.sync="search"
+        hide-selected
+        label="Filter by tags"
+        multiple
+        small-chips
+      >
+        <template v-slot:no-data>
+          <v-list-item>
+            <span class="subheading">Create</span>
+            <v-chip
+              :color="getTagColor(search)"
+              x-small
+            >
+              {{ search }}
+            </v-chip>
+          </v-list-item>
+        </template>
+        <template v-slot:selection="{ attrs, item, parent, selected }">
           <v-chip
-            :color="getTagColor(search)"
+            v-if="item === item"
+            v-bind="attrs"
+            :color="getTagColor(item)"
+            :input-value="selected"
+            x-small
+            text-color=#ffffff
+          >
+            <span class="pr-2">
+              {{ item }}
+            </span>
+            <v-icon
+              x-small
+              @click="parent.selectItem(item)"
+            >mdi-close</v-icon>
+          </v-chip>
+        </template>
+        <template v-slot:item="{ item }">
+          <v-chip
+            :color="getTagColor(item)"
+            dark
             x-small
           >
-            {{ search }}
-          </v-chip>
-        </v-list-item>
-      </template>
-      <template v-slot:selection="{ attrs, item, parent, selected }">
-        <v-chip
-          v-if="item === item"
-          v-bind="attrs"
-          :color="getTagColor(item)"
-          :input-value="selected"
-          x-small
-          text-color=#ffffff
-        >
-          <span class="pr-2">
             {{ item }}
-          </span>
-          <v-icon
-            x-small
-            @click="parent.selectItem(item)"
-          >mdi-close</v-icon>
-        </v-chip>
-      </template>
-      <template v-slot:item="{ item }">
-        <v-chip
-          :color="getTagColor(item)"
-          dark
-          x-small
-        >
-          {{ item }}
-        </v-chip>
-      </template>
-    </v-combobox>
+          </v-chip>
+        </template>
+      </v-combobox>
+      <v-switch
+        v-model="filterType"
+        class="filter-switch"
+        :label="`and`"
+        small
+      >
+        <small></small>
+      </v-switch>
+    <!-- </span> -->
   </v-container>
 </template>
 
@@ -80,6 +90,7 @@ export default {
     tagModel: [],
     search: null,
     viewModel: undefined,
+    filterType: false,
   }),
   watch: {
     tagModel(val, prev) {
@@ -95,6 +106,9 @@ export default {
         type = 'list';
       }
       this.$emit('updateview', type);
+    },
+    filterType(val) {
+      this.$emit('updatefiltertype', val);
     },
   },
   methods: {
@@ -128,14 +142,23 @@ export default {
   margin-right: 10px;
 }
 
+.fe-catalog-filter {
+  display: flex;
+}
+
 .fe-workshop-filter-small {
-    display: none;
-  }
+  display: none;
+}
 
 
 .fe-filter-item {
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.fe-filter-switch {
+  margin-top: 15px;
+  padding-left: 10px;
 }
 
 @media screen and (max-width: 375px) {

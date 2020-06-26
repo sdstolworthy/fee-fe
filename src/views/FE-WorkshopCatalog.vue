@@ -21,6 +21,7 @@
         :items='tags'
         @updatefilter="onFilterSelection"
         @updateview="onViewSelection"
+        @updatefiltertype="onFilterType"
       ></fe-workshop-filter>
       <fe-workshop-pane
         v-if="dataLoaded"
@@ -52,12 +53,16 @@ export default {
     onViewSelection(view) {
       this.catalogView = view;
     },
+    onFilterType(val) {
+      this.filterType = val;
+    },
   },
   data() {
     return {
       dataLoaded: false,
       tagFilter: [],
       catalogView: '',
+      filterType: false,
     };
   },
   computed: {
@@ -71,8 +76,13 @@ export default {
         // if we decide that we want OR filtering... It has this tag OR this tag...
         const postTags = post.tags.map((x) => x.tag);
         const checkAll = (arr, target) => target.every((v) => arr.includes(v));
-        const found = checkAll(postTags, this.tagFilter);
-        // const found = post.tags.some((v) => this.tagFilter.indexOf(v.tag) !== -1);
+        let found;
+        if (this.filterType) {
+          found = checkAll(postTags, this.tagFilter);
+        } else {
+          found = post.tags.some((v) => this.tagFilter.indexOf(v.tag) !== -1);
+        }
+
         return found;
       });
     },
