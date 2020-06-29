@@ -6,7 +6,7 @@
       max-height='350px'
     ></v-img>
     <div class='fe-home-content'>
-      <h1 class="">What is the frontend enablement?</h1>
+      <h1 class="">What is the Frontend Enablement?</h1>
       <p>The frontend enablement is a curated series of essays and workshops on the art
         and science of frontend development. We follow the career path of an aspiring
         developer to illustrate the core and advanced competencies of the trade. You can
