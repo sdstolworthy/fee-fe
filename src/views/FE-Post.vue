@@ -33,7 +33,6 @@
           :disabled='editorDisabled'
           @blur='onBodyBlur'
         />
-        <!-- <div class="fe-post-subtitle">{{post.subtitle}}</div> -->
         <input
           class="fe-post-subtitle"
           v-model="post.subtitle"
@@ -241,8 +240,8 @@ export default {
   color: $body-color;
   font-size: 2.5rem;
   line-height: normal;
-  margin: 0rem !important;
   width: 90%;
+  margin-top: .5rem;
 }
 
 .fe-post-title p{
