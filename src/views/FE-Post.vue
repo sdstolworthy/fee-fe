@@ -44,9 +44,13 @@
           <div class="fe-post-time">
             <span class="fe-post-contributor-label">Time to Complete: 1.25 hours </span>
           </div>
+          <div class="fe-post-date">Created: {{postDate}}</div>
+        </div>
+        <div class="fe-post-publish-details">
           <div class="fe-post-difficulty">
-            <span class="fe-post-date">Difficulty: beginner </span>
+            <span class="fe-post-date">Difficulty: Beginner </span>
           </div>
+          <div class="fe-post-date">Last update: {{updateDate}}</div>
         </div>
         <div class="fe-post-publish-details">
           <div class="fe-post-contributors">
@@ -74,7 +78,6 @@
               </span>
             </span>
           </div>
-          <div class="fe-post-date">Last update: {{postDate}}</div>
         </div>
       </div>
       <v-img
@@ -162,11 +165,9 @@ export default {
             subtitle: this.post.subtitle,
             fullText: update,
           },
-          update: (proxy, { data }) => {
+          update: ({ data }) => {
             this.post.updatedAt = data.updatedAt;
             this.loading = false;
-            console.log(proxy);
-            console.log(data);
           },
         });
       } catch (err) {
@@ -205,6 +206,10 @@ export default {
       return require('@/assets/defaultimg.png');
     },
     postDate() {
+      const dt = DateTime.fromISO(this.post.createdAt);
+      return dt.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
+    },
+    updateDate() {
       const dt = DateTime.fromISO(this.post.updatedAt);
       return dt.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
     },
@@ -277,7 +282,8 @@ export default {
 }
 
 .fe-post-contributors,
-.fe-post-time {
+.fe-post-time,
+.fe-post-difficulty {
   width: 40vw;
 }
 
@@ -301,8 +307,7 @@ export default {
   margin-left: .125rem;
 }
 
-.fe-post-date,
-.fe-post-difficulty {
+.fe-post-date {
   font-size: .75rem;
   width: 40vw;
   text-align: right;
