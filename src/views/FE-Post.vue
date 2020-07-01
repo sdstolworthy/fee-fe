@@ -1,6 +1,5 @@
 <template>
   <div class="fe-post-container">
-    <v-divider class="fe-section-divider"></v-divider>
     <div class="fe-practices-loader">
       <v-progress-circular
       :size="70"
@@ -11,9 +10,36 @@
       ></v-progress-circular>
     </div>
     <div v-show='dataLoaded'>
+      <div
+        class="fe-dialog-loader-background"
+        v-show='loading'
+      ></div>
+      <v-progress-circular
+        :size="40"
+        :width="7"
+        class="fe-dialog-loader"
+        v-show='loading'
+        indeterminate
+      ></v-progress-circular>
+      <fe-edit-toggle
+        class='fe-edit-icon'
+        v-show="this.$store.state.user"
+        @updateeditmode="onEditModeSelection"
+      ></fe-edit-toggle>
       <div class="fe-post-header">
-        <div class="fe-post-title">{{post.title}}</div>
-        <div class="fe-post-subtitle">{{post.subtitle}}</div>
+        <input
+          class="fe-post-title"
+          v-model="post.title"
+          :disabled='editorDisabled'
+          @blur='onBodyBlur'
+        />
+        <!-- <div class="fe-post-subtitle">{{post.subtitle}}</div> -->
+        <input
+          class="fe-post-subtitle"
+          v-model="post.subtitle"
+          :disabled='editorDisabled'
+          @blur='onBodyBlur'
+        />
         <v-divider class="fe-section-divider"></v-divider>
         <div class="fe-post-workshop-details">
           <div class="fe-post-time">
@@ -69,9 +95,13 @@
       </template>
       </v-img>
       <div class="fe-post-body" v-if='dataLoaded'>
-        <vue-markdown
-          :source="post.body.fullText">
-        </vue-markdown>
+        <ckeditor
+          class='fe-inline-editor'
+          :editor="editor"
+          v-model='converted'
+          :disabled='editorDisabled'
+          @blur='onBodyBlur'
+        ></ckeditor>
         <v-divider class="fe-section-divider"></v-divider>
       </div>
     </div>
@@ -80,13 +110,17 @@
 
 <script>
 import { DateTime } from 'luxon';
-import VueMarkdown from 'vue-markdown';
-import { GET_WORKSHOP } from '@/assets/serviceApi/queries.js';
+import CKEditor from '@ckeditor/ckeditor5-vue';
+import InlineEditor from '@ckeditor/ckeditor5-build-inline';
+import { GET_WORKSHOP, UPDATE_WORKSHOP } from '@/assets/serviceApi/queries.js';
+import showdown from 'showdown';
+import FeEditToggle from '@/components/FE-EditToggle.vue';
 
 export default {
   name: 'Post',
   components: {
-    VueMarkdown,
+    FeEditToggle,
+    ckeditor: CKEditor.component,
   },
   props: {
     slug: null,
@@ -95,13 +129,61 @@ export default {
     return {
       post: {},
       dataLoaded: false,
+      converted: '',
+      editor: InlineEditor,
+      editorConfig: {
+        toolbar: {
+          items: [
+            'bold',
+            'italic',
+          ],
+        },
+      },
+      editorDisabled: true,
+      loading: false,
     };
+  },
+  methods: {
+    onEditModeSelection(val) {
+      this.editorDisabled = !val;
+    },
+    onBodyBlur() {
+      const converter = new showdown.Converter();
+      const marked = converter.makeMarkdown(this.converted);
+      this.submitUpdate(marked);
+    },
+    async submitUpdate(update) {
+      try {
+        this.loading = true;
+        this.$apollo.mutate({
+          mutation: UPDATE_WORKSHOP,
+          variables: {
+            practiceId: this.post.id,
+            title: this.post.title,
+            subtitle: this.post.subtitle,
+            fullText: update,
+          },
+          update: (proxy, { data }) => {
+            this.post.updatedAt = data.updatedAt;
+            this.loading = false;
+            console.log(proxy);
+            console.log(data);
+          },
+        });
+      } catch (err) {
+        this.loading = false;
+        // eslint-disable-next-line no-alert
+        alert(err.message || 'An error occurred.');
+      }
+    },
   },
   watch: {
     practices() {
       this.dataLoaded = true;
       // eslint-disable-next-line prefer-destructuring
       this.post = this.practices[0];
+      const converter = new showdown.Converter();
+      this.converted = converter.makeHtml(this.post.body.fullText);
     },
   },
   computed: {
@@ -126,6 +208,13 @@ export default {
     postDate() {
       const dt = DateTime.fromISO(this.post.updatedAt);
       return dt.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
+    },
+    postTitle() {
+      if (this.post.title !== undefined) {
+        console.log(this.post.title);
+        return this.post.title;
+      }
+      return '';
     },
   },
   apollo: {
@@ -152,6 +241,12 @@ export default {
   color: $body-color;
   font-size: 2.5rem;
   line-height: normal;
+  margin: 0rem !important;
+  width: 90%;
+}
+
+.fe-post-title p{
+  margin: 0rem !important;
 }
 
 .fe-post-subtitle {
@@ -160,6 +255,8 @@ export default {
   line-height: normal;
   margin-top: .313rem;
   margin-bottom: .5rem;
+  width: 90%;
+  text-overflow: ellipsis;
 }
 
 .fe-post-body,
@@ -216,6 +313,41 @@ export default {
 .hero-image {
   margin-top: .625rem;
   margin-bottom: .625rem;
+}
+
+.fe-edit-icon {
+  position: fixed;
+  right: 10%;
+  top: 70px;
+  z-index: 4;
+}
+
+.ck.ck-editor__editable_inline {
+  padding: 0;
+  border: none;
+
+}
+
+.fe-post-title.ck.ck-editor__editable_inline>:last-child {
+  margin:0rem;
+}
+
+.fe-dialog-loader {
+  position: absolute;
+  line-height: 100%;
+  margin-right: 50%;
+  margin-left: 50%;
+  top: calc(50% - 20px);
+  z-index: 10;
+  color: $fe-highlight-color;
+}
+
+.fe-dialog-loader-background {
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: $fe-modal-background-color;
 }
 
 @media (max-width:750px) {

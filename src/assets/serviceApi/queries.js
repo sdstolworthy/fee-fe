@@ -27,6 +27,7 @@ export const GET_WORKSHOPS = gql`
 export const GET_WORKSHOP = gql`
   query Practices ($post: String!) {
     practices(where: { slug: $post } ) {
+      id
       title
       subtitle
       body {
@@ -104,6 +105,41 @@ export const REGISTER = gql`
       jwt
       user {
         id
+      }
+    }
+  }
+`;
+
+export const UPDATE_WORKSHOP = gql`
+  mutation updatePractice(
+    $practiceId: ID!,
+    $title: String!,
+    $subtitle: String!,
+    $fullText: String!,
+  ) {
+    updatePractice(
+      input: {
+        where: {
+          id: $practiceId
+        },
+        data: {
+          title: $title,
+          subtitle: $subtitle,
+          body: {
+            fullText: $fullText,
+          }
+        }
+      }
+    ) {
+      practice {
+        id
+        title
+        subtitle
+        createdAt
+        updatedAt
+        body {
+          fullText
+        }
       }
     }
   }

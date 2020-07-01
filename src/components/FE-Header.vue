@@ -3,6 +3,7 @@
     app
     clipped-left
     elevate-on-scroll
+    elevation=1
     color="rgba(255, 255, 255, 0.9)"
     flat
   >
