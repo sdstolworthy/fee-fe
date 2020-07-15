@@ -17,11 +17,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "catalog" */ '../views/FE-WorkshopCatalog.vue'),
   },
   {
-    path: '/workshop/:slug',
+    path: '/catalog/:slug',
     name: 'workshop',
     props: true,
     component: () => import(/* webpackChunkName: "post" */ '../views/FE-Post.vue'),
   },
+  { path: '*', redirect: '/' },
 ];
 
 const router = new VueRouter({

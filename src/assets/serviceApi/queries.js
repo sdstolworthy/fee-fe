@@ -144,3 +144,34 @@ export const UPDATE_WORKSHOP = gql`
     }
   }
 `;
+
+export const CREATE_WORKSHOP = gql`
+  mutation createPractice(
+    $title: String!,
+    $subtitle: String!,
+    $fullText: String!,
+    $slug: String!,
+    $authorsId: ID!,
+  ) {
+    createPractice(
+      input: {
+        data: {
+          title: $title,
+          subtitle: $subtitle,
+          body: {
+            fullText: $fullText,
+          },
+          slug: $slug,
+          authors: [$authorsId],
+        }
+      }
+    ) {
+      practice {
+        id
+        slug
+        title
+        subtitle
+      }
+    }
+  }
+`;
