@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 <template>
   <div>
-    <v-img src="catalog.jpg" class="hero-image"></v-img>
+    <!-- <v-img src="catalog.jpg" class="hero-image"></v-img> -->
     <div class="fe-workshop-wrap">
       <fe-workshop-filter
         :items="tags"

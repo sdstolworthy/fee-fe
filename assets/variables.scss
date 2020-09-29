@@ -117,45 +117,46 @@ pre[class*="language-"] {
 }
 
 .fe-workshop-wrap {
-  height: calc(100vh - 26rem);
+  //height: calc(100vh - 26rem);
+  height: 100%;
 }
 
-@media (max-width: 1300px) { 
-  .fe-workshop-wrap {
-    height: calc(100vh - 22.875rem)
-  }
+// @media (max-width: 1300px) { 
+//   .fe-workshop-wrap {
+//     height: calc(100vh - 22.875rem)
+//   }
 
-  .hero-image {
-    max-height: 18.75rem;
-  }
-}
+//   .hero-image {
+//     max-height: 18.75rem;
+//   }
+// }
 
-@media (max-width: 1000px) { 
-  .fe-workshop-wrap {
-    height: calc(100vh - 19.75rem)
-  }
+// @media (max-width: 1000px) { 
+//   .fe-workshop-wrap {
+//     height: calc(100vh - 19.75rem)
+//   }
 
-  .hero-image {
-    max-height: 15.625rem;
-  }
-}
+//   .hero-image {
+//     max-height: 15.625rem;
+//   }
+// }
 
-@media (max-width: 700px) { 
-  .fe-workshop-wrap {
-    height: calc(100vh - 16.625rem)
-  }
+// @media (max-width: 700px) { 
+//   .fe-workshop-wrap {
+//     height: calc(100vh - 16.625rem)
+//   }
 
-  .hero-image {
-    max-height: 12.5rem;
-  }
-}
+//   .hero-image {
+//     max-height: 12.5rem;
+//   }
+// }
 
-@media (max-width: 500px) { 
-  .fe-workshop-wrap {
-    height: calc(100vh - 15.063rem)
-  }
+// @media (max-width: 500px) { 
+//   .fe-workshop-wrap {
+//     height: calc(100vh - 15.063rem)
+//   }
 
-  .hero-image {
-    max-height: 10.938rem;
-  }
-}
+//   .hero-image {
+//     max-height: 10.938rem;
+//   }
+// }
