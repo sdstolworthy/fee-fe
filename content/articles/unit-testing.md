@@ -4,8 +4,8 @@ subtitle: Automated testing for our codebase.
 date: 2020-04-19T22:51:08.252Z
 authors:
   author1:
-    name: Philip Double
-    avatar: philip.double.png
+    name: Venus Izadi
+    avatar: Venus.Izadi.jpg
 time: .25 hour
 difficulty: easy
 coverimage: whatis.jpg
@@ -22,6 +22,22 @@ People communicate in governance processes about, and by using tools and technol
 *Debate about the overlaps can also lead to actionable insights and solutions.*
 
 This practice originally focussed on challenges, but has been adapted to also explore Bright spots.  Bright spots are described in the book "[Switch: How to change, when change is hard](https://heathbrothers.com/books/switch/)" and has similarities with [Appreciative Inquiry](https://en.wikipedia.org/wiki/Appreciative_inquiry).
+
+## What is Unit Testing?
+## Why Unit Testing?
+## Testing Web Frameworks (and our recommendation)
+## First things first: how do I know what to test?
+## Set up the project
+## Test-driven development
+## Test structure, and a first failing test
+## Fixing the test (and breaking it again)
+## Code coverage
+## Examples
+## Cheatsheet
+## Links and resources to learn more
+## Related topics
+
+---
 
 ## Why use it?
 
