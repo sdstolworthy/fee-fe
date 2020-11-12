@@ -14,27 +14,26 @@ tags:
   - HTML
 order: 1.5
 ---
-## What is it
+## Introduction
+Present story which introduces the need for the technology. Most of these will start in team standup with a problem statement presented by a team member and with the workshop topic being the solution.
 
-A reflection tool to capture how the team members understand [Deming's 14 Management Principles](https://en.wikipedia.org/wiki/W._Edwards_Deming#Key_principles).
+## Theory
+Define the workshop topic and provide information on it from a technical and cultural perspective.
 
-## Why use it
+## Practices
+Run any pertinent practices that lead into the implementation.
 
-Reflecting on the management principles enables the team to share their beliefs on management, to share their views on where the organization is, and to identify areas for improvement.
+## Implementation
+Place our exercises with example code here.
 
-## Steps
+## Outro
+Come back to the story to show how the solution resolved the problem statement in the introduciton.
 
-* Take a blank sheet of paper, or use a whiteboard,
-* Draw a 2x2 matrix,
-* The horizontal axis represents your agreement with the principle. On the right, you agree; on the left, you disagree,
-* The vertical axis represents how the principle is applied to your organization. "Applied" at the top, "not applied" at the bottom,
-* You will now position Deming's 14 Management Principles by placing their numbers on a 2x2 matrix. Each team member uses a different color.
-* After placing each principle, the facilitator asks the outliers to explain their position.
-* The facilitator asks the group if it inspires some ideas for the team.
+### Additional Resources
 
-_You can use the tool as a self-reflection one. As a facilitator, it is useful to try the exercise first by yourself to be able to pick the principles that will most resonate with your team._
+* [Webinar](https://vimeo.com/54601924) and [Slides](https://www.slideshare.net/KarenMartinGroup/metricsbased-process-mapping-what-when-how) from Karen Martin's Metrics-Based Process Mapping: What, When & How
+* [List of Webinars](https://www.ksmartin.com/webinar/metrics-based-process-mapping/) by Karen Martin
 
-## Further Information
+## References
 
-* [Deming's 14 Management Principles](https://en.wikipedia.org/wiki/W._Edwards_Deming#Key_principles).
-* This practice was first published in [Changing Your Team From The Inside](https://www.goodreads.com/book/show/40692351-changing-your-team-from-the-inside)
+1. <a name="footnote-1"></a>[Lean Thinking](https://www.lean.org/BookStore/ProductDetails.cfm?SelectedProductID=88)
