@@ -231,8 +231,8 @@ export interface Movie {
   popularity: number
   poster_path?: string
   backdrop_path?: string
-  homepage?: string 
-  release_date: Date 
+  homepage?: string
+  release_date: Date
   revenue: number
   status: Status
   title: string
@@ -242,6 +242,48 @@ export interface Movie {
 }
 ```
 
-Defining an interface for our movie makes it easier to understand what each field means, and what data it is expecting. (Note that in the example above some of the fields would need to be [serialized](https://en.wikipedia.org/wiki/Serialization) in order to meet the interface.)
+Defining an interface for our movie makes it easier to understand what each field means, and what data it is expecting. Note that in the example above some of the fields would need to be [serialized](https://en.wikipedia.org/wiki/Serialization) in order to meet the interface.
 
+Now that we have the interface defined, we can see how it would be used in a real application.
 
+Let's say we have a simple movie service that fetches a list of movies:
+
+```typescript
+function getMovies(): Promise<Array<Movie>> {
+  return fetch('movies.example.com').then((response) =>
+    response.json()
+  ) as Array<Movie>
+}
+```
+
+Notice that we can add a return type to our function. So now any client code that calls our `getMovies` function will know that it returns a promise of a list of `Movie`.
+
+Because the method has a typed return, many modern IDEs will provide code hints and typing completion. This speeds up development time.
+
+## The cons of TypeScript
+
+TypeScript does have some drawbacks, and it is worth weighing these against the pros to determine if it is a good fit for the project you are working on.
+
+### Increased boilerplate
+
+In order to take advantage of static typing, additional code must be written to actually define types in advanced.
+In small projects or rapid prototypes, this additional work can minimize the positive impact TypeScript can have on a project. This is especially true if members of the team are not familiar with TypeScript and will need to learn its syntax.
+
+### False sense of security
+
+Statically typed languages can often give a false sense of security about the quality or reliability of a codebase. Frequently, using TypeScript can be erroneously billed as a replacement for adequate testing. This beleif is incorrect.
+
+There is no adequate replacement for proper testing. That an TypeScript application properly transpiles and gives no errors is not an indication that the codebase is bug free.
+
+The TypeScript compiler can also be silenced or confused, both intentionally and unintentionally.
+For example, any variable can be coerced to a type of `unknown`. From there, it can be coerced to any other type...
+including `any`. This practice can be legitimately used in some cases, but it can also be a code smell.
+
+Additionally, when using APIs external to the codebase, contracts can change unexpectedly. Therefore, TypeScript does not eliminate the need proper error handling.
+
+### Package support
+
+It is hard to overstate the wide package support for TypeScript in the JavaScript ecosystem.
+A vast plurality of packages have support for TypeScript already built in, or installable in another package.
+However, when a package does not have support for TypeScript out of the box, it can be laborious to include it in a project.
+This concern really should be quite minimal, however, it is worth considering whether you and your team are willing to tolerate or mitigate a lack of TypeScript support from third parties.
